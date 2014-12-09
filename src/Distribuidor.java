@@ -27,7 +27,7 @@ public class Distribuidor {
 	public void setDireccion (Direccion direccionIntro){
 		this.direccion = direccionIntro;
 	}
-	public Direccion getDIreccion() {
+	public Direccion getDireccion() {
 		return this.direccion;
 	}
 

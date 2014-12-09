@@ -1,0 +1,3 @@
+Frutas Jose,12345D/ Calle Arriba,1,2,Villabona,Gipuzkoa,20159/ Jose,Dorronsoro,943610000,48
+Electrodomesticos Paco,45678K/ Calle Abajo,2,3,Zizurkil,Gipuzkoa,20150/ Paco,Fernandez,946620000,29
+Muebles Andrea,78910L/ Calle Centro,3,4,Asteasu,Gipuzkoa,20159/ Andrea,Limon,943690000,37
