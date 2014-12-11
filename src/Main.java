@@ -8,6 +8,9 @@ public class Main {
 
 	public static void main (String args[]) throws IOException {	
 
+		Scanner sc = new Scanner(System.in);
+		ArrayList <Distribuidor> distribuidores = new ArrayList <Distribuidor>();
+
 		////////////////////////////////////////////////
 	    //// GUARDAR DATOS DEL FICHERO EN ARRAYLIST ////
 	    ////////// Y MOSTRARLOS EN PANTALLA ////////////
@@ -19,9 +22,6 @@ public class Main {
 			FileReader fr = new FileReader (archivo);
 			BufferedReader bf = new BufferedReader(fr);
 			String linea = bf.readLine();
-
-			Scanner sc = new Scanner(System.in);
-			ArrayList <Distribuidor> distribuidores = new ArrayList <Distribuidor>();
 	       
 	        // 1.- Leer los datos y guardarlos en el arraylist
 	        while(linea!=null) {
@@ -273,5 +273,89 @@ public class Main {
 	    	System.out.println("Error: "+ error);
 	    }
 
+
+		ArrayList <Cliente> clientes = new ArrayList <Cliente>();
+		
+		////////////////////////////////////////////////
+	    //// GUARDAR DATOS DEL FICHERO EN ARRAYLIST ////
+	    ////////// Y MOSTRARLOS EN PANTALLA ////////////
+	    ////////////////////////////////////////////////
+
+		try {
+
+ 			File archivo = new File("/home/zubiri/proyectosjava/java2_Almacen/src/clientes.txt");
+			FileReader fr2 = new FileReader (archivo);
+			BufferedReader bf2 = new BufferedReader(fr2);
+			String linea = bf2.readLine();
+	       
+	        // 1.- Leer los datos y guardarlos en el arraylist
+	        while(linea!=null) {
+
+	        	// Separar la linea leida en partes (2); teniendo "/ " como patron.
+	        	String [] lineaPartida = linea.split("/ ");
+
+	        	// Las partes obtenidas de la linea, las vuelve a dividir en partes, con "," como patron.
+	       	 	String [] parte1 = lineaPartida[0].split(",");
+	       		String [] parte2 = lineaPartida[1].split(",");
+	        	
+	        	// Se crean los objetos necesarios para despues asignarles los valores.
+	       		Cliente cliente = new Cliente();
+	       		Direccion direccion = new Direccion();
+
+	       		// Al objeto direccion se le asignan los valores obtenidos desde el fichero.
+	       		direccion.setCalle(parte2[0]);
+	       		direccion.setNumero(Integer.parseInt(parte2[1]));
+	       		direccion.setPiso(parte2[2]);
+	       		direccion.setCiudad(parte2[3]);
+	     		direccion.setProvincia(parte2[4]);
+	       		direccion.setCodigoPostal(Integer.parseInt(parte2[5]));
+
+	      		// Al objeto cliente se le asignan los valores obtenidos desde el fichero.
+	       		cliente.setNombre(parte1[0]);
+	       		cliente.setApellidos(parte1[1]);
+	       		cliente.setDni(parte1[2]);
+	       		cliente.setNumSocio(Double.parseDouble(parte1[3]));
+	       		cliente.setDto(Double.parseDouble(parte1[4]));
+	       		cliente.setDireccion(direccion);
+
+	       		// Añade 'cliente' al arraylist 'clientes'.       		       		
+	       		clientes.add(cliente);
+
+	       		// Lee otra linea del fichero.
+	       		linea = bf2.readLine();
+	        }
+
+	        // Salto de linea vistoso
+	        System.out.println("\n///////////////////////////////////////");
+	        System.out.println("\n///////////////////////////////////////");
+
+
+	        // 2.- Mostrar los datos del arraylist
+	        System.out.println("\nA continuacion se muestran los datos de los clientes:");
+	        for (int i=0; i<clientes.size(); i++) {
+	        	System.out.println("\n//// Cliente " + (i+1));
+
+	        	// Datos del cliente
+	        	System.out.println("- Nombre: " + clientes.get(i).getNombre());
+	        	System.out.println("- Apellidos: " + clientes.get(i).getApellidos());
+	        	System.out.println("- DNI: " + clientes.get(i).getDni());
+	        	System.out.println("- Numero de socio: " + clientes.get(i).getNumSocio());
+	        	System.out.println("- Descuento: " + clientes.get(i).getDto());
+
+	        	// Datos de la direccion
+	        	System.out.println("- Direccion:");
+	        	System.out.println("   - Calle: " + clientes.get(i).getDireccion().getCalle());
+	        	System.out.println("   - Numero: " + clientes.get(i).getDireccion().getNumero());
+	        	System.out.println("   - Piso: " + clientes.get(i).getDireccion().getPiso());
+	        	System.out.println("   - Ciudad: " + clientes.get(i).getDireccion().getCiudad());
+	        	System.out.println("   - Provincia: " + clientes.get(i).getDireccion().getProvincia());
+	        	System.out.println("   - Codigo Postal: " + clientes.get(i).getDireccion().getCodigoPostal());
+	        }
+	    }
+
+	    // Si se produce algun error, se mostrara en pantalla.
+	    catch(Exception error){
+	    	System.out.println("Error: "+ error);
+	    }
 	}
 }

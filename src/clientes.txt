@@ -1,0 +1,4 @@
+Miren,Perez Rodriguez,1234567A,1001,2/ Garcia Lorca,1,2,Madrid,CA Madrid,24789
+Antonio,Diaz Simon,2345678B,1025,2/ Ramon y Cajal,2,3,Barcelona,Cataluña,24562
+Pepa,Borrego Cortes,3456789C,205,4/ Cela,3,4,Valencia,CA Valencia,29857
+Guillermo,Montes mendez,4567890D,100,5/ Cervantes,3,4,Lorca,Murcia,24751
