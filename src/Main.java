@@ -10,6 +10,14 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 		ArrayList <Distribuidor> distribuidores = new ArrayList <Distribuidor>();
+		ArrayList <Manzana> manzanasCesta = new ArrayList <Manzana>();
+		ArrayList <Lechuga> lechugasCesta = new ArrayList <Lechuga>();
+		ArrayList <Leche> lechesCesta = new ArrayList <Leche>();
+
+		ArrayList <Manzana> manzanasIntro = new ArrayList <Manzana>();
+		ArrayList <Lechuga> lechugasIntro = new ArrayList <Lechuga>();
+		ArrayList <Leche> lechesIntro = new ArrayList <Leche>();
+
 
 		////////////////////////////////////////////////
 	    //// GUARDAR DATOS DEL FICHERO EN ARRAYLIST ////
@@ -104,18 +112,14 @@ public class Main {
 		    /////////  LOS DATOS DEL DISTRIBUIDOR INTRODUCIDO /////////
 		    ///////////////////////////////////////////////////////////
 
-			ArrayList <Manzana> manzanas = new ArrayList <Manzana>();
-			ArrayList <Lechuga> lechugas = new ArrayList <Lechuga>();
-			ArrayList <Leche> leches = new ArrayList <Leche>();
-
 
 	        // Solicitud de manzanas
 	        System.out.println("\n///////////////////////////////////////");
 	        System.out.println("\n///////////////////////////////////////");
-	        System.out.println("\nIntroduce los datos de MANZANA(S):");
+	        System.out.println("\nIntroduzca los datos de MANZANA(S):");
 	        for (int i=0; i<2; i++) {
 	        	Manzana manzana = new Manzana();
-		        System.out.println("\n/// Manzana " + (i+1) + " :");
+		        System.out.println("\n/// Manzana " + (i+1) + ":");
 		        System.out.print("Tipo de manzana: ");
 				manzana.setTipoManzana(sc.next());
 		        System.out.print("Procedencia: ");
@@ -124,6 +128,8 @@ public class Main {
 				manzana.setColor(sc.next());
 		        System.out.print("Precio (Euros/kilo): ");
 				manzana.setEurosKilo(sc.nextDouble());
+		        System.out.print("Codigo de Barras: ");
+				manzana.setCodigoBarras(sc.next());
 		        System.out.print("Distribuidor: ");
 				String distribuidorManzana = sc.next();
 
@@ -137,20 +143,20 @@ public class Main {
 			       	 	}
 					}
 					if (realizado == 0) {
-				       	System.out.print("El proveedor que ha introducido, no existe en la base de datos. Introduzca uno valido: ");
+				       	System.out.print("El proveedor que ha introducido, no existe. Introduzca uno valido: ");
 				       	distribuidorManzana = sc.next();
 					}
 				}
-				manzanas.add(manzana);
+				manzanasIntro.add(manzana);
 	        } 
 
 	        // Solicitud de lechugas
 	        System.out.println("\n///////////////////////////////////////");
 	        System.out.println("\n///////////////////////////////////////");
-	        System.out.println("\nIntroduce los datos de LECHUGA(S):");
+	        System.out.println("\nIntroduzca los datos de LECHUGA(S):");
 	        for (int i=0; i<1; i++) {
 	        	Lechuga lechuga = new Lechuga();
-		        System.out.println("\n/// Lechuga " + (i+1) + " :");
+		        System.out.println("\n/// Lechuga " + (i+1) + ":");
 		        System.out.print("Tipo de lechuga: ");
 				lechuga.setTipoLechuga(sc.next());
 		        System.out.print("Procedencia: ");
@@ -159,6 +165,8 @@ public class Main {
 				lechuga.setColor(sc.next());
 		        System.out.print("Precio (Euros/unidad): ");
 				lechuga.setEurosUnidad(sc.nextDouble());
+		        System.out.print("Codigo de Barras: ");
+				lechuga.setCodigoBarras(sc.next());
 		        System.out.print("Distribuidor: ");
 				String distribuidorLechuga = sc.next();
 
@@ -172,26 +180,28 @@ public class Main {
 			       	 	}
 					}
 					if (realizado == 0) {
-				       	System.out.print("El proveedor que ha introducido, no existe en la base de datos. Introduzca uno valido: ");
+				       	System.out.print("El proveedor que ha introducido, no existe. Introduzca uno valido: ");
 				       	distribuidorLechuga = sc.next();
 					}
 				}
-				lechugas.add(lechuga);
+				lechugasIntro.add(lechuga);
 	        }
 
 	        // Solicitud de leche
 	        System.out.println("\n///////////////////////////////////////");
 	        System.out.println("\n///////////////////////////////////////");
-	        System.out.println("\nIntroduce los datos de LECHE(S):");
+	        System.out.println("\nIntroduzca los datos de LECHE(S):");
 	        for (int i=0; i<2; i++) {
 	        	Leche leche = new Leche();
-		        System.out.println("\n/// Leche " + (i+1) + " :");
+		        System.out.println("\n/// Leche " + (i+1) + ":");
 		        System.out.print("Tipo de leche: ");
 				leche.setTipoLeche(sc.next());
 		        System.out.print("Procedencia: ");
 				leche.setProcedencia(sc.next());
 		        System.out.print("Precio (Euros/litro): ");
 				leche.setEurosLitro(sc.nextDouble());
+		        System.out.print("Codigo de Barras: ");
+				leche.setCodigoBarras(sc.next());
 		        System.out.print("Distribuidor: ");
 				String distribuidorLeche = sc.next();
 
@@ -205,11 +215,11 @@ public class Main {
 			       	 	}
 					}
 					if (realizado == 0) {
-						System.out.print("El proveedor que ha introducido, no existe en la base de datos. Introduzca uno valido: ");
+						System.out.print("El proveedor que ha introducido, no existe. Introduzca uno valido: ");
 				    	distribuidorLeche = sc.next();
 					}
 				}
-				leches.add(leche);
+				lechesIntro.add(leche);
 	        }
 
 
@@ -220,51 +230,53 @@ public class Main {
 
 
 	        // Mostrar datos de las manzanas
-	        for (int i=0; i<manzanas.size(); i++) {
-	        	System.out.println("\n- Manzana " + (i+1) + " :");
-	        	System.out.println("   - Tipo de Manzana: " + manzanas.get(i).getTipoManzana());
-	        	System.out.println("   - Procedencia: " + manzanas.get(i).getProcedencia());
-	        	System.out.println("   - Color: " + manzanas.get(i).getColor());
-	        	System.out.println("   - Precio (Euros/kilo): " + manzanas.get(i).getEurosKilo());
+	        for (int i=0; i<manzanasIntro.size(); i++) {
+	        	System.out.println("\n- Manzana " + (i+1) + ":");
+	        	System.out.println("   - Tipo de Manzana: " + manzanasIntro.get(i).getTipoManzana());
+	        	System.out.println("   - Procedencia: " + manzanasIntro.get(i).getProcedencia());
+	        	System.out.println("   - Color: " + manzanasIntro.get(i).getColor());
+	        	System.out.println("   - Precio (Euros/Kilo): " + manzanasIntro.get(i).getEurosKilo());
+	        	System.out.println("   - Codigo de Barras: " + manzanasIntro.get(i).getCodigoBarras());
 	        	System.out.println("   - Distribuidor:");
-	        	System.out.println("       - Nombre: " + manzanas.get(i).getDistribuidor().getNombre());
-	        	System.out.println("       - CIF: " + manzanas.get(i).getDistribuidor().getCif());
+	        	System.out.println("       - Nombre: " + manzanasIntro.get(i).getDistribuidor().getNombre());
+	        	System.out.println("       - CIF: " + manzanasIntro.get(i).getDistribuidor().getCif());
 	        	System.out.println("       - Direccion: ");
-	        	System.out.println("           - Calle: " + manzanas.get(i).getDistribuidor().getDireccion().getCalle());
-	        	System.out.println("           - Numero: " + manzanas.get(i).getDistribuidor().getDireccion().getNumero());
-	        	System.out.println("           - Piso: " + manzanas.get(i).getDistribuidor().getDireccion().getPiso());
-	        	System.out.println("           - Ciudad: " + manzanas.get(i).getDistribuidor().getDireccion().getCiudad());
-	        	System.out.println("           - Provincia: " + manzanas.get(i).getDistribuidor().getDireccion().getProvincia());
-	        	System.out.println("           - Codigo Postal: " + manzanas.get(i).getDistribuidor().getDireccion().getCodigoPostal());
+	        	System.out.println("           - Calle: " + manzanasIntro.get(i).getDistribuidor().getDireccion().getCalle());
+	        	System.out.println("           - Numero: " + manzanasIntro.get(i).getDistribuidor().getDireccion().getNumero());
+	        	System.out.println("           - Piso: " + manzanasIntro.get(i).getDistribuidor().getDireccion().getPiso());
+	        	System.out.println("           - Ciudad: " + manzanasIntro.get(i).getDistribuidor().getDireccion().getCiudad());
+	        	System.out.println("           - Provincia: " + manzanasIntro.get(i).getDistribuidor().getDireccion().getProvincia());
+	        	System.out.println("           - Codigo Postal: " + manzanasIntro.get(i).getDistribuidor().getDireccion().getCodigoPostal());
 	        	System.out.println("       - Contacto:");
-	        	System.out.println("           - Nombre: " + manzanas.get(i).getDistribuidor().getPersonaContacto().getNombre());
-	        	System.out.println("           - Apellidos: " + manzanas.get(i).getDistribuidor().getPersonaContacto().getApellidos());
-	        	System.out.println("           - Telefono: " + manzanas.get(i).getDistribuidor().getPersonaContacto().getTelefono());
-	        	System.out.println("           - Edad: " + manzanas.get(i).getDistribuidor().getPersonaContacto().getEdad());
+	        	System.out.println("           - Nombre: " + manzanasIntro.get(i).getDistribuidor().getPersonaContacto().getNombre());
+	        	System.out.println("           - Apellidos: " + manzanasIntro.get(i).getDistribuidor().getPersonaContacto().getApellidos());
+	        	System.out.println("           - Telefono: " + manzanasIntro.get(i).getDistribuidor().getPersonaContacto().getTelefono());
+	        	System.out.println("           - Edad: " + manzanasIntro.get(i).getDistribuidor().getPersonaContacto().getEdad());
 	        }
 
 	        // Mostrar datos de las lechugas
-	        for (int i=0; i<lechugas.size(); i++) {
-	        	System.out.println("\n- Lechuga " + (i+1) + " :");
-	        	System.out.println("   - Tipo de Lechuga: " + lechugas.get(i).getTipoLechuga());
-	        	System.out.println("   - Procedencia: " + lechugas.get(i).getProcedencia());
-	        	System.out.println("   - Color: " + lechugas.get(i).getColor());
-	        	System.out.println("   - Precio (Euros/kilo): " + lechugas.get(i).getEurosUnidad());
+	        for (int i=0; i<lechugasIntro.size(); i++) {
+	        	System.out.println("\n- Lechuga " + (i+1) + ":");
+	        	System.out.println("   - Tipo de Lechuga: " + lechugasIntro.get(i).getTipoLechuga());
+	        	System.out.println("   - Procedencia: " + lechugasIntro.get(i).getProcedencia());
+	        	System.out.println("   - Color: " + lechugasIntro.get(i).getColor());
+	        	System.out.println("   - Precio (Euros/Unidad): " + lechugasIntro.get(i).getEurosUnidad());
+	        	System.out.println("   - Codigo de Barras: " + lechugasIntro.get(i).getCodigoBarras());
 	        	System.out.println("   - Distribuidor:");
-	        	System.out.println("       - Nombre: " + lechugas.get(i).getDistribuidor().getNombre());
-	        	System.out.println("       - CIF: " + lechugas.get(i).getDistribuidor().getCif());
+	        	System.out.println("       - Nombre: " + lechugasIntro.get(i).getDistribuidor().getNombre());
+	        	System.out.println("       - CIF: " + lechugasIntro.get(i).getDistribuidor().getCif());
 	        	System.out.println("       - Direccion: ");
-	        	System.out.println("           - Calle: " + lechugas.get(i).getDistribuidor().getDireccion().getCalle());
-	        	System.out.println("           - Numero: " + lechugas.get(i).getDistribuidor().getDireccion().getNumero());
-	        	System.out.println("           - Piso: " + lechugas.get(i).getDistribuidor().getDireccion().getPiso());
-	        	System.out.println("           - Ciudad: " + lechugas.get(i).getDistribuidor().getDireccion().getCiudad());
-	        	System.out.println("           - Provincia: " + lechugas.get(i).getDistribuidor().getDireccion().getProvincia());
-	        	System.out.println("           - Codigo Postal: " + lechugas.get(i).getDistribuidor().getDireccion().getCodigoPostal());
+	        	System.out.println("           - Calle: " + lechugasIntro.get(i).getDistribuidor().getDireccion().getCalle());
+	        	System.out.println("           - Numero: " + lechugasIntro.get(i).getDistribuidor().getDireccion().getNumero());
+	        	System.out.println("           - Piso: " + lechugasIntro.get(i).getDistribuidor().getDireccion().getPiso());
+	        	System.out.println("           - Ciudad: " + lechugasIntro.get(i).getDistribuidor().getDireccion().getCiudad());
+	        	System.out.println("           - Provincia: " + lechugasIntro.get(i).getDistribuidor().getDireccion().getProvincia());
+	        	System.out.println("           - Codigo Postal: " + lechugasIntro.get(i).getDistribuidor().getDireccion().getCodigoPostal());
 	        	System.out.println("       - Contacto:");
-	        	System.out.println("           - Nombre: " + lechugas.get(i).getDistribuidor().getPersonaContacto().getNombre());
-	        	System.out.println("           - Apellidos: " + lechugas.get(i).getDistribuidor().getPersonaContacto().getApellidos());
-	        	System.out.println("           - Telefono: " + lechugas.get(i).getDistribuidor().getPersonaContacto().getTelefono());
-	        	System.out.println("           - Edad: " + lechugas.get(i).getDistribuidor().getPersonaContacto().getEdad());
+	        	System.out.println("           - Nombre: " + lechugasIntro.get(i).getDistribuidor().getPersonaContacto().getNombre());
+	        	System.out.println("           - Apellidos: " + lechugasIntro.get(i).getDistribuidor().getPersonaContacto().getApellidos());
+	        	System.out.println("           - Telefono: " + lechugasIntro.get(i).getDistribuidor().getPersonaContacto().getTelefono());
+	        	System.out.println("           - Edad: " + lechugasIntro.get(i).getDistribuidor().getPersonaContacto().getEdad());
 	        }
 	    }
 
@@ -314,7 +326,7 @@ public class Main {
 	       		cliente.setNombre(parte1[0]);
 	       		cliente.setApellidos(parte1[1]);
 	       		cliente.setDni(parte1[2]);
-	       		cliente.setNumSocio(Double.parseDouble(parte1[3]));
+	       		cliente.setNumSocio(Integer.parseInt(parte1[3]));
 	       		cliente.setDto(Double.parseDouble(parte1[4]));
 	       		cliente.setDireccion(direccion);
 
@@ -357,5 +369,140 @@ public class Main {
 	    catch(Exception error){
 	    	System.out.println("Error: "+ error);
 	    }
+
+
+		
+		////////////////////////////////////////////////
+	    //////// INTRODUCIR PRODUCTOS A LA CESTA ///////
+	    //////////// Y CALCULAR EL IMPORTE /////////////
+	    ////////////////////////////////////////////////
+
+	    // Salto de linea vistoso
+	    System.out.println("\n///////////////////////////////////////");
+	    System.out.println("\n///////////////////////////////////////");
+
+	    System.out.println("\nCreando cesta de la compra... ");
+	    Cesta cesta = new Cesta();
+
+		System.out.print("\nElige el DNI del cliente:\n");
+		for (int i=0; i<clientes.size(); i++) {
+			System.out.println(clientes.get(i).getDni());
+		}
+	    System.out.print("\nIntroduzca el DNI del cliente: ");
+	    String dniIntro = sc.next();
+
+	    int realizado = 0;
+
+		while (realizado == 0) {
+			for (int i=0; i<clientes.size(); i++) {
+			    if (dniIntro.equalsIgnoreCase(clientes.get(i).getDni())) {
+			        cesta.setCliente(clientes.get(i));
+				    realizado = 1;
+				}
+			}
+			if (realizado == 0) {
+				System.out.print("\nEl DNI que ha introducido, no existe. Introduzca uno valido: ");
+				dniIntro = sc.next();
+			}
+		}
+
+	    int salir = 0;
+
+	    while (salir == 0) {
+	    	System.out.print("\nIntroduzca el codigo de barras del producto (Para salir introduzca '0'): ");
+		    String codigoBarrasIntro = sc.next();
+		   	realizado = 0;
+	    	switch (codigoBarrasIntro) {
+
+                case "0": 
+		    		salir = 1;
+		    		realizado = 1;
+                	break;
+
+                default: 
+					while (realizado == 0) {
+						for (int i=0; i<manzanasIntro.size(); i++) {
+				        	if (codigoBarrasIntro.equalsIgnoreCase(manzanasIntro.get(i).getCodigoBarras())) {
+				        		manzanasCesta.add(manzanasIntro.get(i));
+					       		realizado = 1;
+					       	}
+						}
+						for (int i=0; i<lechugasIntro.size(); i++) {
+				        	if (codigoBarrasIntro.equalsIgnoreCase(lechugasIntro.get(i).getCodigoBarras())) {
+				        		lechugasCesta.add(lechugasIntro.get(i));
+					       		realizado = 1;
+					       	}
+						}
+						for (int i=0; i<lechesIntro.size(); i++) {
+				        	if (codigoBarrasIntro.equalsIgnoreCase(lechesIntro.get(i).getCodigoBarras())) {
+				        		lechesCesta.add(lechesIntro.get(i));
+					       		realizado = 1;
+					       	}
+						}
+						if (realizado == 0) {
+							System.out.print("\nEl codigo que ha introducido, no existe. Introduzca uno valido: ");
+						   	codigoBarrasIntro = sc.next();
+						}
+					}
+                    break;
+	    	}
+	    }
+	  
+
+	    cesta.setManzanas(manzanasCesta);
+	    cesta.setLeches(lechesCesta);
+	    cesta.setLechugas(lechugasCesta);
+	    cesta.setImporte();
+
+	    // Datos de la compra
+	    System.out.println("\nDATOS DE LA COMPRA");
+
+	    // Datos del cliente
+	    System.out.println("\n- Datos del cliente:");
+	    System.out.println("-    Nombre: " + cesta.getCliente().getNombre());
+	    System.out.println("-    Apellidos: " + cesta.getCliente().getApellidos());
+	    System.out.println("-    DNI: " + cesta.getCliente().getDni());
+	    System.out.println("-    Numero de socio: " + cesta.getCliente().getNumSocio());
+	    System.out.println("-    Descuento: " + cesta.getCliente().getDto());
+	    System.out.println("-    Direccion:");
+	    System.out.println("      - Calle: " + cesta.getCliente().getDireccion().getCalle());
+	    System.out.println("      - Numero: " + cesta.getCliente().getDireccion().getNumero());
+	    System.out.println("      - Piso: " + cesta.getCliente().getDireccion().getPiso());
+	    System.out.println("      - Ciudad: " + cesta.getCliente().getDireccion().getCiudad());
+	    System.out.println("      - Provincia: " + cesta.getCliente().getDireccion().getProvincia());
+	    System.out.println("      - Codigo Postal: " + cesta.getCliente().getDireccion().getCodigoPostal());
+
+	    // Datos de la cesta
+	    System.out.println("\n- Productos de la cesta:");
+
+	    for (int i=0; i<cesta.getManzanas().size(); i++) {
+	    	System.out.println("-    Manzana " + (i+1) + ":");
+	        System.out.println("      - Tipo de Manzana: " + cesta.getManzanas().get(i).getTipoManzana());	        	
+	        System.out.println("      - Procedencia: " + cesta.getManzanas().get(i).getProcedencia());
+	        System.out.println("      - Color: " + cesta.getManzanas().get(i).getColor());
+	        System.out.println("      - Precio (Euros/kilo): " + cesta.getManzanas().get(i).getEurosKilo());
+	        System.out.println("      - Codigo de Barras: " + cesta.getManzanas().get(i).getCodigoBarras());
+	    }
+
+	    for (int i=0; i<cesta.getLechugas().size(); i++) {
+	    	System.out.println("-    Lechuga " + (i+1) + ":");
+	        System.out.println("      - Tipo de Lechuga: " + cesta.getLechugas().get(i).getTipoLechuga());	        	
+	        System.out.println("      - Procedencia: " + cesta.getLechugas().get(i).getProcedencia());
+	        System.out.println("      - Color: " + cesta.getLechugas().get(i).getColor());
+	        System.out.println("      - Precio (Euros/Unidad): " + cesta.getLechugas().get(i).getEurosUnidad());
+	        System.out.println("      - Codigo de Barras: " + cesta.getLechugas().get(i).getCodigoBarras());
+	    }
+
+	    for (int i=0; i<cesta.getLeches().size(); i++) {
+	    	System.out.println("-    Leche " + (i+1) + ":");
+	        System.out.println("      - Tipo de Leche: " + cesta.getLeches().get(i).getTipoLeche());	        	
+	        System.out.println("      - Procedencia: " + cesta.getLeches().get(i).getProcedencia());
+	        System.out.println("      - Precio (Euros/Litro): " + cesta.getLeches().get(i).getEurosLitro());
+	        System.out.println("      - Codigo de Barras: " + cesta.getLeches().get(i).getCodigoBarras());
+	    }
+
+	    // Importe de la cesta
+		System.out.println("\nIMPORTE: " + cesta.getImporte() + "\n");
+
 	}
 }

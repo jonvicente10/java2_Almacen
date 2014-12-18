@@ -5,7 +5,7 @@ public class Cliente {
 	private String nombre;
 	private String apellidos;
 	private String dni;
-	private Double numSocio;
+	private int numSocio;
 	private Double dto;
 	private Direccion direccion;
 
@@ -42,10 +42,10 @@ public class Cliente {
 	}
 
 	// Metodos Getter y Setter de numSocio
-	public void setNumSocio (double numSocioIntro){
+	public void setNumSocio (int numSocioIntro){
 		this.numSocio = numSocioIntro;
 	}
-	public double getNumSocio() {
+	public int getNumSocio() {
 		return this.numSocio;
 	}
 

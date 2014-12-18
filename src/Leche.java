@@ -6,6 +6,7 @@ public class Leche {
 	private String procedencia;
 	private Double eurosLitro;
 	private Distribuidor distribuidor;
+	private String codigoBarras;
 
 	// Métodos Getter y Setter de tipoLeche
 	public void setTipoLeche (String tipoLecheIntro){
@@ -37,6 +38,14 @@ public class Leche {
 	}
 	public Distribuidor getDistribuidor() {
 		return this.distribuidor;
+	}
+
+	// Métodos Getter y Setter de codigoBarras
+	public void setCodigoBarras (String codigoBarrasIntro){
+		this.codigoBarras = codigoBarrasIntro;
+	}
+	public String getCodigoBarras() {
+		return this.codigoBarras;
 	}
 
 }
